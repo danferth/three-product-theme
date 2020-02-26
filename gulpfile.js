@@ -23,12 +23,12 @@ var Promise         = require('es6-promise').Promise,
     beep            = require('beepbeep'),
     themekit        = require('@shopify/themekit');
 //=======options==============================================================================
-var themeName   = "testTheme",
-    css_file    = "site",
+var themeName   = "just3guitars",
+    css_file    = "theme",
     css_src     = "_styles",
     css_dest    = "assets",
     //js locations
-    js_file     = "site",
+    js_file     = "theme",
     js_src      = "_scripts",
     js_dest     = "assets";
 
