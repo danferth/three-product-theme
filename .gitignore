@@ -2,3 +2,4 @@ node_modules/**/**
 package.json
 config.yml
 theme/**/**
+.DS_Store
