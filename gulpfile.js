@@ -86,7 +86,10 @@ function checkjsTask (){
   return gulp.src([js_src + '/lib/**/*.js', js_src + '/' + js_file + '.js'])
   .pipe(jshint())
   .on('error', swallowError)
-  .pipe(jshint.reporter('jshint-stylish'));
+  .pipe(jshint.reporter('jshint-stylish'))
+  .pipe(uglify())
+  .pipe(rename(js_file + '.min.js'))
+  .pipe(gulp.dest(js_dest));
 };
 exports.checkjs = checkjsTask;
 
