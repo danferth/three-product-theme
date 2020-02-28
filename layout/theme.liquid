@@ -7,9 +7,21 @@
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <link rel="canonical" href="{{ canonical_url }}">
 
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {%- endif -%}
+{%- if settings.favicon1 != blank -%}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon1 | img_url: '180x180' }}">
+{%- endif -%}
+{%- if settings.favicon1 != blank -%}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon2 | img_url: '32x32' }}">
+{%- endif -%}
+{%- if settings.favicon1 != blank -%} 
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon3 | img_url: '16x16' }}">
+{%- endif -%}
+  <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
+  <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#771806">
+  <meta name="apple-mobile-web-app-title" content="Just3guitars">
+  <meta name="application-name" content="Just3guitars">
+  <meta name="msapplication-TileColor" content="#771806">
+  <meta name="theme-color" content="#ffffff">
 
   {%- capture seo_title -%}
     {{ page_title }}
@@ -32,6 +44,7 @@
 
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
+  {{ 'theme.scss.liquid' | asset_url | | stylesheet_tag }}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');
@@ -76,7 +89,7 @@ added cdn js scripts
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js" integrity="sha256-98Q574VkbV+PkxXCKSgL6jVq9mrVbS7uCdA+vt0sLS8=" crossorigin="anonymous"></script>
 
 {%- comment -%} site.js{%- endcomment -%}
-<script type="text/javascript" src="assets/site.js"></script>
+{{ 'theme.min.js' | asset_url | script_tag }}
 
 </body>
 </html>
