@@ -7,9 +7,9 @@
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <link rel="canonical" href="{{ canonical_url }}">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ apple-touch-icon.png | asset_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon-32x32.png | asset_url }}"> 
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ favicon-16x16.png | asset_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32x32.png' | asset_url }}"> 
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ 'favicon-16x16.png' | asset_url }}">
   <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
   <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#771806">
   <meta name="apple-mobile-web-app-title" content="Just3guitars">
@@ -64,6 +64,12 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+
+{%- comment -%}bar for template remove for production{%- endcomment -%}
+<div class="templategiveaway">
+  template: {{ template }}.liquid
+</div>
+
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
