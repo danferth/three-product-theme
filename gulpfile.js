@@ -63,9 +63,9 @@ function cssTask(){
   .pipe(sasslint.format())
   .pipe(sass({outputStyle: 'compressed'})).on('error', swallowError)
   .pipe(postcss(processors))
-  .pipe(rename(css_file+'.scss.liquid'))
-  .pipe(replace('"{{', '{{'))
-  .pipe(replace('}}"', '}}'))
+  //.pipe(rename(css_file+'.scss.liquid'))
+  //.pipe(replace('"{{', '{{'))
+  //.pipe(replace('}}"', '}}'))
   .pipe(gulp.dest(css_dest))
   .on('end', function(){ beep(3); });
 };
@@ -98,16 +98,6 @@ function jsUglyTask(){
   .pipe(gulp.dest(js_dest));
 };
 exports.jsUgly = jsUglyTask;
-
-//=======Themekit=============================================================================
-function shopifyDeploy(){
-  themekit.command('deploy', 
-    {
-      env: 'development'
-    })
-}
-exports.shopify = shopifyDeploy
-
 
 //=======BUILD================================================================================
 exports.build = gulp.parallel(cssTask,

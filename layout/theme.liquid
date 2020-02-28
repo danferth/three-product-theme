@@ -43,8 +43,13 @@
   {%- endif -%}
 
   {% include 'social-meta-tags' %}
+
+  {% comment %}animate.css{% endcomment %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
+  {% comment %}font awesome{% endcomment %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   {% include 'css-variables' %}
-  {{ 'theme.scss.liquid' | asset_url | | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | | stylesheet_tag }}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');
