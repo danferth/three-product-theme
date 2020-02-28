@@ -7,15 +7,9 @@
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <link rel="canonical" href="{{ canonical_url }}">
 
-{%- if settings.favicon1 != blank -%}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon1 | img_url: '180x180' }}">
-{%- endif -%}
-{%- if settings.favicon1 != blank -%}
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon2 | img_url: '32x32' }}">
-{%- endif -%}
-{%- if settings.favicon1 != blank -%} 
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon3 | img_url: '16x16' }}">
-{%- endif -%}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ apple-touch-icon.png | asset_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon-32x32.png | asset_url }}"> 
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ favicon-16x16.png | asset_url }}">
   <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
   <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#771806">
   <meta name="apple-mobile-web-app-title" content="Just3guitars">

@@ -145,28 +145,5 @@
         "default": true
       }
     ]
-  },
-  {
-    "name": "Favicon",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "favicon1",
-        "label": "Favicon 180x180 image",
-        "info": "180x180 apple-touch-icon"
-      },
-      {
-        "type": "image_picker",
-        "id": "favicon2",
-        "label": "Favicon 32x32 image",
-        "info": "32x32 favicon-32x32"
-      },
-      {
-        "type": "image_picker",
-        "id": "favicon3",
-        "label": "Favicon 16x16 image",
-        "info": "16x16 favicon-16x16"
-      }
-    ]
   }
 ]

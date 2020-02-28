@@ -12,12 +12,15 @@ $green:  #38a387;
 $cyan:   #0676b3;
 
 
+/*
+* Cinzel (serif) for product and blog headings [reg 400]
+* Spartan (sans-serif) for body and all other text [light 300, reg 400, semBold 600, bold 700]
+*/
 
-
-$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-sans-serif: 'Spartan', sans-serif;
 //have fontAwesome in there so you can use it in input placeholders
-$input-font-family: "FontAwesome", 'Roboto', sans-serif;
-$headings-font-family: 'Roboto', sans-serif;
+$input-font-family: "FontAwesome", 'Spartan', sans-serif;
+$headings-font-family: 'Cinzel', sans-serif;
 
 
 .settingsSCSS{
