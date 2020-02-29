@@ -72,15 +72,24 @@
 </div>
 
 {%- comment -%}skip to content for screen readers{%- endcomment -%}
-  <a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-<div class="container-md">
-  {% section 'header' %}
+<a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
+<div class="container-md">
+
+<div class="row">
+  {% section 'header' %}
+</div>
+
+<div class="row">
   <main role="main" id="MainContent">
     {{ content_for_layout }}
   </main>
+</div>
 
+<div class="row">
   {% section 'footer' %}
+</div>
+
 </div>
 
 {%- comment -%}
