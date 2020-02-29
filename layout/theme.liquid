@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="msapplication-tap-highlight" content="no" />
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <link rel="canonical" href="{{ canonical_url }}">
 
@@ -70,9 +71,9 @@
   template: {{ template }}.liquid
 </div>
 
-
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
+{%- comment -%}skip to content for screen readers{%- endcomment -%}
+  <a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+<div class="container-md">
   {% section 'header' %}
 
   <main role="main" id="MainContent">
@@ -80,7 +81,7 @@
   </main>
 
   {% section 'footer' %}
-
+</div>
 
 {%- comment -%}
 added cdn js scripts
