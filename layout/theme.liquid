@@ -66,29 +66,24 @@
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-{%- comment -%}bar for template remove for production{%- endcomment -%}
-<div class="templategiveaway">
-  template: {{ template }}.liquid
-</div>
+  
+  <div class="container-md">
+  
+    {%- comment -%}skip to content for screen readers{%- endcomment -%}
+    <a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    
+    {%- comment -%}bar for template remove for production{%- endcomment -%}
+    <div class="row templategiveaway">
+      template: {{ template }}.liquid
+    </div>
 
-{%- comment -%}skip to content for screen readers{%- endcomment -%}
-<a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
-<div class="container-md">
-
-<div class="row">
   {% section 'header' %}
-</div>
 
-<div class="row">
-  <main role="main" id="MainContent">
+  <main role="main" id="MainContent" class='row'>
     {{ content_for_layout }}
   </main>
-</div>
 
-<div class="row">
   {% section 'footer' %}
-</div>
 
 </div>
 

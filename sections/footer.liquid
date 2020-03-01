@@ -1,8 +1,9 @@
-<footer>
-<div class="footer col-12">
+
+<footer class='row justify-content-center mt-2 pt-2 border-top'>
   
   {%- comment -%}social links{%- endcomment -%}
-  <div class="row">
+  <div class="col-10 my-3">
+  <div class="row justify-content-around">
     {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
     {% for social in social_accounts %}
       {%- assign social_handle = social | handleize -%}
@@ -10,7 +11,7 @@
       {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
     
       {% if settings[social_link] != blank %}
-        <div class='col'>
+        <div class=''>
           <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
             {% include social_icon %}
           </a>
@@ -18,10 +19,11 @@
       {% endif %}
     {% endfor %}
   </div>
+</div>
 
   {%- comment -%}payment icons{%- endcomment -%}
-  <div class="row">
-    {% if section.settings.show_payment_icons %}
+  {% if section.settings.show_payment_icons %}
+    <div class="col-12 my-3">
       {% unless shop.enabled_payment_types == empty %}
         <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
         <ul class="payment-icons">
@@ -32,24 +34,24 @@
           {% endfor %}
         </ul>
       {% endunless %}
+    </div>
     {% endif %}
-  </div>
 
   {%- comment -%}footer menu links{%- endcomment -%}
-  <div class="row">
+  <div class="col-12 my-3">
+    <div class="row">
     {%- assign footer_linklist = section.settings.footer_linklist -%}
     {% if linklists[footer_linklist].links.size > 0 %}
-      <ul>
         {% for link in linklists[footer_linklist].links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          <div class='col-6'><p class='m-0 text-center'><a href="{{ link.url }}">{{ link.title }}</a></p></div>
         {% endfor %}
-      </ul>
     {% endif %}
   </div>
+</div>
 
 
 
-  <div class='text-center'>
+  <div class='col-12 text-center p-2'>
     <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
   </div>
   
