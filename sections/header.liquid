@@ -12,31 +12,11 @@ Theme Store optional settings
 {%- endcomment -%}
 
 
-<section data-section-id="{{ section.id }}" data-section-type="header" class='row'>
-
-  {%- comment -%} anouncement bar {%- endcomment -%}
-  {%- if section.settings.announcement_bar_enabled -%}
-  {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-    <div class="row">
-      <div class='col-12 alert alert-warning alert-dismissable fade show mb-0'>
-        {%- if section.settings.announcement_bar_link != blank -%}
-        <a href="{{ section.settings.announcement_bar_link }}">
-          {{ section.settings.announcement_bar_text | escape }}
-        </a>
-        {%- else -%}
-        <p>{{ section.settings.announcement_bar_text | escape }}</p>
-        {%- endif -%}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-  {%- endif -%}
-  {%- endif -%}
+<section data-section-id="{{ section.id }}" data-section-type="header">
 
 
   {%- comment -%} header start {%- endcomment -%}
-  <header role="banner" class="jumbotron jumbotron-fluid w-100 pt-2 pl-2 pb-2">
+  <header role="banner" class="jumbotron jumbotron-fluid w-100 p-2 mb-3">
     
     {%- comment -%} logo {%- endcomment -%}
     <div class="h1 jumbotron-logo">
@@ -45,18 +25,14 @@ Theme Store optional settings
       </a>
     </div>
 
-    <div class="container mt-5">
-
 
         {%- comment -%} cart {%- endcomment -%}
-        <a href="/cart" class='jumbotron-cart-link'>
+        <a href="/cart" class='jumbotron-cart-link mt-5'>
           {% include 'icon-cart' %}
           {{ 'layout.cart.title' | t }}
           ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
         </a>
 
-
-    </div>
   </header>
 
 
@@ -66,12 +42,13 @@ Theme Store optional settings
 
 
   {%- comment -%}navigation{%- endcomment -%}
-  <nav role="navigation">
-    <ul>
+  <nav role="navigation" class='row mb-3'>
+    <div class="col-12">
+    <ul class='nav justify-content-center'>
       {% for link in linklists[section.settings.menu].links %}
       {% if link.links != blank %}
-      <li>
-        <a href="{{ link.url }}">
+      <li class='nav-item'>
+        <a class='nav-link' href="{{ link.url }}">
           {{ link.title }}
           {% include 'icon-arrow-down' %}
         </a>
@@ -86,18 +63,40 @@ Theme Store optional settings
         </ul>
       </li>
       {% else %}
-      <li>
-        <a href="{{ link.url }}">
+      <li class='nav-item'>
+        <a class='nav-link' href="{{ link.url }}">
           {{ link.title }}
         </a>
       </li>
       {% endif %}
       {% endfor %}
     </ul>
+  </div>
   </nav>
 
 </section>
 
+
+
+{%- comment -%} anouncement bar {%- endcomment -%}
+{%- if section.settings.announcement_bar_enabled -%}
+{%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+  <div class="row">
+    <div class='col-12 alert alert-warning alert-dismissable fade show mb-0'>
+      {%- if section.settings.announcement_bar_link != blank -%}
+      <a href="{{ section.settings.announcement_bar_link }}">
+        {{ section.settings.announcement_bar_text | escape }}
+      </a>
+      {%- else -%}
+      <p>{{ section.settings.announcement_bar_text | escape }}</p>
+      {%- endif -%}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+{%- endif -%}
+{%- endif -%}
 
 
 {% assign image_size = section.settings.header_image.width | append:'x' %}

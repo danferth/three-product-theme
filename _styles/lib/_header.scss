@@ -2,13 +2,37 @@
     svg{
         width:75%;
         height:auto;
-        .st0{fill:rgb(255, 255, 255);}
+        .st0{fill:rgb(241, 226, 16);}
 	    .st1{fill:rgb(255, 255, 255);}
     }
 }
 .jumbotron-cart-link{
     color:white;
+    font-size:.75rem;
+    background: teal;
+    padding: .25rem 1.25rem;
+    display: inline-block;
+    border-radius: 1rem;
+    &:hover{
+        background:darken(teal, 10%);
+        color:white;
+        text-decoration:none;
+    }
     svg{
         fill:white;
+        margin-right:.25rem;
     }
+}
+.nav{
+    padding: .25rem 0;
+}
+.nav-item{
+    border-right:1px solid grey;
+    font-size: .875rem;
+    &:last-child{
+        border-right:none;
+    }
+}
+.nav-link{
+    padding: .25rem 1rem;
 }
