@@ -1,4 +1,3 @@
-//AAA should be loaded first when concatinating.
 /*!
   * Bootstrap v4.4.1 (https://getbootstrap.com/)
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
@@ -7133,13 +7132,3 @@
 
 })));
 //# sourceMappingURL=bootstrap.bundle.js.map
-
-//go nuts!
-
-
-//doc ready
-$(document).ready(function(){
-
-
-
-}); //END Doc.ready
