@@ -42,7 +42,7 @@ Theme Store optional settings
 
 
   {%- comment -%}navigation{%- endcomment -%}
-  <nav role="navigation" class='row mb-3'>
+  <nav role="navigation" class='mb-3'>
     <div class="col-12">
     <ul class='nav justify-content-center'>
       {% for link in linklists[section.settings.menu].links %}
@@ -74,30 +74,30 @@ Theme Store optional settings
   </div>
   </nav>
 
-</section>
-
-
-
-{%- comment -%} anouncement bar {%- endcomment -%}
-{%- if section.settings.announcement_bar_enabled -%}
-{%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+  {%- comment -%} anouncement bar {%- endcomment -%}
+  {%- if section.settings.announcement_bar_enabled -%}
+  {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+  <div class="container-md">
   <div class="row">
-    <div class='col-12 alert alert-warning alert-dismissable fade show mb-0'>
-      {%- if section.settings.announcement_bar_link != blank -%}
-      <a href="{{ section.settings.announcement_bar_link }}">
-        {{ section.settings.announcement_bar_text | escape }}
-      </a>
-      {%- else -%}
-      <p>{{ section.settings.announcement_bar_text | escape }}</p>
-      {%- endif -%}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <div class='col-12 alert alert-warning alert-dismissable fade show mb-0'>
+        {%- if section.settings.announcement_bar_link != blank -%}
+        <a href="{{ section.settings.announcement_bar_link }}">
+          {{ section.settings.announcement_bar_text | escape }}
+        </a>
+        {%- else -%}
+        <p>{{ section.settings.announcement_bar_text | escape }}</p>
+        {%- endif -%}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
-  </div>
-{%- endif -%}
-{%- endif -%}
+  </div>  
+  {%- endif -%}
+  {%- endif -%}
 
+
+</section>
 
 {% assign image_size = section.settings.header_image.width | append:'x' %}
 

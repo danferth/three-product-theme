@@ -1,6 +1,6 @@
 
-<footer class='row justify-content-center mt-2 pt-2 border-top'>
-  
+<footer class='container-md'>
+  <div class="row justify-content-center mt-2 pt-2 border-top">
   {%- comment -%}social links{%- endcomment -%}
   <div class="col-10 my-3">
   <div class="row justify-content-around">
@@ -11,7 +11,7 @@
       {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
     
       {% if settings[social_link] != blank %}
-        <div class=''>
+        <div>
           <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
             {% include social_icon %}
           </a>
@@ -39,12 +39,14 @@
 
   {%- comment -%}footer menu links{%- endcomment -%}
   <div class="col-12 my-3">
-    <div class="row">
+    <div class="row justify-content-center">
     {%- assign footer_linklist = section.settings.footer_linklist -%}
     {% if linklists[footer_linklist].links.size > 0 %}
+    <nav class='nav flex-column'>
         {% for link in linklists[footer_linklist].links %}
-          <div class='col-6'><p class='m-0 text-center'><a href="{{ link.url }}">{{ link.title }}</a></p></div>
+          <a class=' nav-link text-center' href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
+      </nav>
     {% endif %}
   </div>
 </div>
@@ -55,6 +57,7 @@
     <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}</small>
   </div>
   
+
 </div>
 </footer>
 

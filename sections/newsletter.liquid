@@ -7,6 +7,8 @@
   - Subheading: description of the newsletter section
 {%- endcomment -%}
 <section>
+  <div class="row">
+    <div class="col-12">
   {% if section.settings.section_title != blank %}
     <label for="Email">{{ section.settings.section_title | escape }}</label>
   {% endif %}
@@ -14,24 +16,29 @@
     <p>{{ section.settings.subheading | escape }}</p>
   {% endif %}
 
-  {% form 'customer' %}
+  {% form 'customer', class: 'form-inline' %}
     {{ form.errors | default_errors }}
     {% if form.posted_successfully? %}
       <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
     {% else %}
+    <div class="form-group">
       <input type="hidden" name="contact[tags]" value="newsletter">
-      <input type="email"
+      <input class='form-control'
+        type="email"
         name="contact[email]"
         id="Email"
         value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
         placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
         autocorrect="off"
         autocapitalize="off">
-      <button type="submit" name="commit" id="Subscribe">
+      </div>
+      <button class='btn btn-primary mb-3' type="submit" name="commit" id="Subscribe">
         <span>{{ 'general.newsletter_form.submit' | t }}</span>
       </button>
     {% endif %}
   {% endform %}
+</div>
+</div>
 </section>
 
 {% schema %}

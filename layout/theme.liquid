@@ -66,27 +66,27 @@
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-  {%- comment -%}bar for template remove for production{%- endcomment -%}
+  {%- comment -%}bar for template remove for production
   <div class="templategiveaway">
     template: {{ template }}.liquid
   </div>
-  
+  {%- endcomment -%}
   
   
   {%- comment -%}skip to content for screen readers{%- endcomment -%}
   <a class="sr-only sr-only-focusable" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
     
-  <div class="container-md">
-
+  
   {% section 'header' %}
-
-  <main role="main" id="MainContent" class='row'>
-    {{ content_for_layout }}
+  
+  <main role="main" id="MainContent">
+    <div class="container-md">
+      {{ content_for_layout }}
+    </div>
   </main>
 
   {% section 'footer' %}
 
-</div>
 
 {%- comment -%}
 added cdn js scripts

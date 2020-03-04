@@ -1,0 +1,74 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Product Blocks" section on the Theme Editor.
+
+  Theme Store required settings
+  - Product: product to showcase
+  - Title: Title to be imposed over product block
+{%- endcomment -%}
+<section class='prodiuct-blocks'>
+    <div class="row justify-content-between">
+
+        <div class="col-12">
+            {%- if section.settings.title != blank -%}
+              <h2>{{ section.settings.title }}</h2>
+            {%- endif -%}
+				</div>
+				
+				{%- assign count = section.blocks.size -%}
+        {%- for block in section.blocks -%}
+				{%- assign product = all_products[block.settings.product] -%}
+            <div class="product_block col-12 mb-1">
+							<div class="product_block_image">
+								<img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+							</div>
+							<p class='text-center mb-3'>{{ product.title }}</p>
+            </div>
+        {%- endfor -%}
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product Blocks",
+    "max_blocks": 3,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Header Text",
+        "default": "Give it a title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "label": "Product",
+            "id": "product",
+            "type": "product"
+          }
+        ]
+      }
+    ],
+		"presets": [
+			{
+        "name": "Product Block",
+        "category": "Product",
+        "blocks": [
+            {
+                "type": "product"
+            },
+            {
+                "type": "product"
+            },
+            {
+                "type": "product"
+            }
+        ]
+			}
+		]
+  }
+{% endschema %}

@@ -7,6 +7,8 @@
   - Text: description of the rich text section
 {%- endcomment -%}
 <section>
+  <div class="row">
+    <div class="col-12">
   {%- if section.settings.title != blank -%}
     <h2>{{ section.settings.title | escape }}</h2>
   {%- endif -%}
@@ -15,6 +17,8 @@
       {{ section.settings.text }}
     </div>
   {%- endif -%}
+</div>
+</div>
 </section>
 
 {% schema %}
