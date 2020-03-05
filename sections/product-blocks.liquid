@@ -20,7 +20,7 @@
 				{%- assign product = all_products[block.settings.product] -%}
             <div class="product_block col-12 mb-1">
 							<div class="product_block_image">
-								<img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+								<a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}"></a>
 							</div>
 							<p class='text-center mb-3'>{{ product.title }}</p>
             </div>
