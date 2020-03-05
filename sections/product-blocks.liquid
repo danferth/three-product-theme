@@ -18,12 +18,14 @@
 				{%- assign count = section.blocks.size -%}
         {%- for block in section.blocks -%}
 				{%- assign product = all_products[block.settings.product] -%}
-            <div class="product_block col-12 mb-1">
-							<div class="product_block_image">
-								<a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}"></a>
-							</div>
-							<p class='text-center mb-3'>{{ product.title }}</p>
+            <div class="product_block col-12 mb-3">
+              <div class="card">
+								<a href="{{ product.url }}"><img class='card-img-top' src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}"></a>
+                <div class="card-body">
+              <p class='text-center mb-0'>{{ product.title }}</p>
             </div>
+            </div>
+          </div>
         {%- endfor -%}
     </div>
 </section>
