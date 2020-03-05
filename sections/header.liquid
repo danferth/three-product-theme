@@ -79,7 +79,7 @@ Theme Store optional settings
   {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
   <div class="container-md">
   <div class="row">
-      <div class='col-12 alert alert-warning alert-dismissable fade show mb-0'>
+      <div class='col-12 alert alert-warning alert-dismissable fade show rounded-0 mb-3'>
         {%- if section.settings.announcement_bar_link != blank -%}
         <a href="{{ section.settings.announcement_bar_link }}">
           {{ section.settings.announcement_bar_text | escape }}
