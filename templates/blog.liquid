@@ -52,15 +52,17 @@
 
   <div class="card-body">
 
-      <h3 class="card-title">
+      <h3 class="card-title text-center">
         <a href="{{ article.url }}">{{ article.title }}</a>
       </h3>
   
-      {% capture date %}{{ article.published_at | date: '%b %Y' }}{% endcapture %}
-  
-      <p class="card-text">
-        {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
-      </p>
+
+
+      {% include 'article-author-date' %}
+
+      <hr>
+
+
 
     <div class="card-text mb-3">
       {% if article.excerpt.size > 0 %}
