@@ -2,12 +2,19 @@
 
   {%- assign blog_title = blog.title -%}
 
+
+  {%- comment -%} we are not using tags for text so ...
   {% if current_tags %}
     {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
   {% endif %}
+{%- endcomment -%}
 
-  <h1>{{ blog_title }}</h1>
 
+
+  <h1 class="text-center">{{ blog_title }}</h1>
+
+
+  {%- comment -%} for use of tags
   {% if blog.all_tags.size > 0 %}
     <h2>{{ 'blogs.general.categories' | t }}</h2>
 
@@ -23,7 +30,7 @@
       {% endfor %}
     </ul>
   {% endif %}
-
+{%- endcomment -%}
 
   {% comment %}
 
@@ -32,27 +39,30 @@
   {% endcomment %}
 
   {% for article in blog.articles %}
-    <h3>
-      <a href="{{ article.url }}">{{ article.title }}</a>
-    </h3>
 
-    {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
 
-    <p>
-      {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
-    </p>
-
-    {% if article.image %}
+<div class="card mb-3">
+  
+  {% if article.image %}
       <a href="{{ article.url }}">
-        {% include 'responsive-image' with
-          image: article.image,
-          max_width: 1024,
-          max_height: 1024
-        %}
+        <img class='card-img-top' src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}}">
       </a>
-    {% endif %}
+  {% endif %}
 
-    <div class="rte">
+
+  <div class="card-body">
+
+      <h3 class="card-title">
+        <a href="{{ article.url }}">{{ article.title }}</a>
+      </h3>
+  
+      {% capture date %}{{ article.published_at | date: '%b %Y' }}{% endcapture %}
+  
+      <p class="card-text">
+        {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
+      </p>
+
+    <div class="card-text mb-3">
       {% if article.excerpt.size > 0 %}
         {{ article.excerpt }}
       {% else %}
@@ -62,6 +72,7 @@
       {% endif %}
     </div>
 
+    {%- comment -%} we are not using comments or tags
     {% if blog.comments_enabled? or article.tags.size > 0 %}
       <ul>
         {% if blog.comments_enabled? %}
@@ -82,12 +93,20 @@
         {% endif %}
       </ul>
     {% endif %}
+{%- endcomment -%}
 
-    <p>
-      <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
-    </p>
+
+
+
+      {% include 'article-keep-reading' %}
+
+
+  </div>
+  </div>
 
   {% endfor %}
+
+
 
   {% if paginate.pages > 1 %}
     {% include 'pagination' %}

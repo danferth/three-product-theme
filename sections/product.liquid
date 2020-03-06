@@ -42,7 +42,7 @@
       <div class="col-12 product_description">{{ product.description }}</div>
       <div class="col-12 text-center">
         <hr class='hr-dashed mb-2'>
-        <span class='product_description_more'>more</span>
+        <span class='product_description_more text-muted'>more</span>
         <i class="far fa-arrow-alt-circle-down d-block text-primary"></i>
       </div>
     </div>
@@ -57,7 +57,7 @@
   </div>
 
 
-  <div class="col-12 product_main_form mb-3 py-3 bg-warning">
+  <div class="col-12 product_main_form mb-5 py-3 bg-warning">
     {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
       <input type="hidden" id="Quantity" name="quantity" value="1">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
