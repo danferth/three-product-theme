@@ -15,7 +15,7 @@
 
 
   {% if section.settings.title != blank %}
-    <h2>{{ section.settings.title | escape }}</h2>
+    <h2 class="text-center">{{ section.settings.title | escape }}</h2>
   {% endif %}
 
   {%- assign blog = blogs[section.settings.blog] -%}
@@ -28,18 +28,15 @@
 
   <ul class="blog-post">
     {% for article in blog.articles limit: section.settings.post_limit %}
-      <li class="blog-post__item article_wrap mb-3 pb-2">
+      <li class="blog-post__item article_wrap card mb-3">
         
         <a href="{{ article.url }}">
-          <div class="article_image">
             {% if article.image %}
-              <img src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
+              <img class='card-img-top' src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
           {% endif %}
-          </div>
-
-          <h4 class='text-center mt-3'>{{ article.title }}</h4>
         </a>
-      
+        <div class="card-body">
+        <h4 class='text-center card-title'>{{ article.title }}</h4>
         <hr class='article_hr'>
       
       {% if section.settings.blog_show_author or section.settings.blog_show_date %}
@@ -54,7 +51,7 @@
       {% endif %}
 
 
-      <div class="article_excerpt text-center px-2 mb-2">
+      <div class="article_excerpt text-center mb-3">
         {% if article.excerpt.size > 0 %}
               {{ article.excerpt | truncate: 150 }}
             {% else %}
@@ -62,8 +59,8 @@
             {% endif %}
       </div>
 
-      <a class=' article_keep_reading mr-2 d-block text-right' href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">{{ 'blogs.article.read_more' | t }}</a>
-
+      <a class=' article_keep_reading d-block text-right' href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">{{ 'blogs.article.read_more' | t }}</a>
+    </div>
     </li>
     {% endfor %}
   </ul>

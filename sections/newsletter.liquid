@@ -7,21 +7,24 @@
   - Subheading: description of the newsletter section
 {%- endcomment -%}
 <section>
-  <div class="row bg-light py-2">
+  <div class="row bg-light pt-3">
+    
     <div class="col-12">
-  {% if section.settings.section_title != blank %}
-    <label class='h5' for="Email">{{ section.settings.section_title | escape }}</label>
-  {% endif %}
-  {% if section.settings.subheading != blank %}
-    <p>{{ section.settings.subheading | escape }}</p>
-  {% endif %}
+      {% if section.settings.section_title != blank %}
+        <label class='h5' for="Email">{{ section.settings.section_title | escape }}</label>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </div>
 
-  {% form 'customer', class: 'form-inline' %}
+
+  {% form 'customer', class: 'form-inline w-100' %}
     {{ form.errors | default_errors }}
     {% if form.posted_successfully? %}
       <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
     {% else %}
-    <div class="form-group">
+    <div class="form-group col-8 pr-0">
       <input type="hidden" name="contact[tags]" value="newsletter">
       <input class='form-control newsletter_input'
         type="email"
@@ -32,12 +35,13 @@
         autocorrect="off"
         autocapitalize="off">
       </div>
-      <button class='newsletter_btn btn btn-primary mb-3 rounded-right' type="submit" name="commit" id="Subscribe">
+      <div class="form-group col-4 pl-0">
+      <button class='newsletter_btn btn btn-primary btn-block rounded-right' type="submit" name="commit" id="Subscribe">
         <span>{{ 'general.newsletter_form.submit' | t }}</span>
       </button>
+    </div>
     {% endif %}
   {% endform %}
-</div>
 </div>
 </section>
 
