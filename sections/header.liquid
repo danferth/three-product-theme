@@ -16,23 +16,39 @@ Theme Store optional settings
 
 
   {%- comment -%} header start {%- endcomment -%}
-  <header role="banner" class="jumbotron jumbotron-fluid w-100 p-2 mb-3">
+  <header role="banner" class="jumbotron jumbotron-fluid w-100 mb-3 p-0">
     
+    {% if template.name == 'article' %}
+    {% assign image_size = article.image.width | append:'x' %}
+      <img class='article_jumbotron_image' src="{{ article.image | img_url: image_size }}" alt="{{ articla.title }}">
+    {% endif %}
+
+    <div class="jumbotron_container container-fluid px-0">
+
     {%- comment -%} logo {%- endcomment -%}
+    {% if template.name != 'article' %}
     <div class="h1 jumbotron-logo">
       <a href="/" class="logo">
         {% include 'icon-just3logo' %}
       </a>
     </div>
+    {% endif %}
 
-
+    {%- comment -%} if we are on an article show article title instead of logo {%- endcomment -%}
+    {% if template.name == 'article' %}
+        <h1 class='article_header_title text-center d-none d-md-block'>{{ article.title }}</h1>
+        {% endif %}
+        
         {%- comment -%} cart {%- endcomment -%}
-        <a href="/cart" class='jumbotron-cart-link mt-5'>
-          {% include 'icon-cart' %}
-          {{ 'layout.cart.title' | t }}
-          ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-        </a>
-
+        {% if template.name != 'article' %}
+          <a href="/cart" class='jumbotron-cart-link mt-5 mb-2'>
+            {% include 'icon-cart' %}
+            {{ 'layout.cart.title' | t }}
+            ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
+          </a>
+        {% endif %}
+        
+      </div>
   </header>
 
 
@@ -99,22 +115,44 @@ Theme Store optional settings
 
 </section>
 
-{% assign image_size = section.settings.header_image.width | append:'x' %}
+{% if template.name != 'article' %}
+  {% if section.setings.header_image != 'blank' %}
+    {% assign image_size = section.settings.header_image.width | append:'x' %}
+    <style>
+      .jumbotron {
+        background: url({{ section.settings.header_image | img_url: image_size }}) no-repeat center center;
+        background-size: 100% auto;
+      }
+      </style>
+  {% else %}
+    <style>
+      .jumbotron {
+        background: teal;
+      }
+    </style>
+  {% endif %}
+{% endif %}
 
 
-{% if section.setings.header_image != 'blank' %}
-  <style>
-    .jumbotron {
-      background: url({{ section.settings.header_image | img_url: image_size }}) no-repeat center center;
-      background-size: 100% auto;
+{% if template.name == 'article' %}
+  {% if article.image %}
+  {% assign image_size = article.image.width | append:'x' %}
+    <style>
+      .jumbotron{
+        position:relative;
+      }
+    .article_jumbotron_image{
+      width:100%;
+      height:auto;
     }
-  </style>
-{% else %}
-  <style>
-    .jumbotron {
-      background: teal;
+    .jumbotron_container{
+      position:absolute;
+      top:40%;
+      left:0;
+      z-index: 500;
     }
-  </style>
+    </style>
+  {% endif %}
 {% endif %}
 
 
