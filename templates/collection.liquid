@@ -1,102 +1,90 @@
-{% paginate collection.products by 12 %}
-  <header role="banner">
-    <h1>{{ collection.title }}</h1>
+<div class="row">
+
+  {% paginate collection.products by 12 %}
+
+
+  <div class="col-12 mb-3">
+    <h1 class="text-center">{{ collection.title }}</h1>
+
     {% if collection.description != blank %}
-      <div class="rte">
-        {{ collection.description }}
-      </div>
+    <p>{{ collection.description}}</p>
     {% endif %}
-
-    {% if collection.all_tags.size > 0 %}
-      <ul>
-        {% for tag in collection.all_tags %}
-          {% if current_tags contains tag %}
-            <li class="active">
-              {{ tag | link_to_remove_tag: tag }}
-            </li>
-          {% else %}
-            <li>
-              {{ tag | link_to_tag: tag }}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </header>
-
-  <div>
-    {% for product in collection.products %}
-      <div>
-        {% if product.featured_image != blank %}
-          <a href="{{ product.url | within: collection }}">
-            {% include 'responsive-image' with
-              image: product.featured_image,
-              max_width: 700,
-              max_height: 800
-            %}
-          </a>
-        {% endif %}
-
-        <p>
-          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-        </p>
-        <p>
-          {% if product.compare_at_price > product.price %}
-
-            {% if product.price_varies %}
-              {%- assign sale_price = product.price | money -%}
-              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-            {% else %}
-              {{ 'products.product.on_sale' | t }}
-              {{ product.price | money }}
-            {% endif %}
-
-          {% else %}
-
-            {% if product.price_varies %}
-              {%- assign price = product.price | money -%}
-              {{ 'products.product.from_text_html' | t: price: price }}
-            {% else %}
-              {{ product.price | money }}
-            {% endif %}
-
-          {% endif %}
-
-          {% if product.compare_at_price > product.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>{{ product.compare_at_price | money }}</s>
-          {% endif %}
-
-          {% unless product.available %}
-            {{ 'products.product.sold_out' | t }}
-          {% endunless %}
-        </p>
-      </div>
-
-    {% else %}
-      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-        {% for i in (1..8) %}
-          <a href="#">
-            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-          </a>
-
-          <p>
-            <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
-          </p>
-
-          <p>
-            {{ 1999 | money }}
-          </p>
-        {% endfor %}
-      {% else %}
-        <p>{{ 'collections.general.no_matches' | t }}</p>
-      {% endif %}
-
-    {% endfor %}
+    <hr>
   </div>
 
+
+
+  <div class="col-12">
+    <div class="row">
+
+      {% for product in collection.products %}
+      <div class="col-12">
+        <div class="card mb-3">
+          {% if product.featured_image != blank %}
+          <a href="{{ product.url | within: collection }}">
+            <img class='card-img-top' src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+          </a>
+          {% endif %}
+
+          <div class="card-body">
+            <h5 class='text-center'>
+              <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+            </h5>
+
+            {% unless product.available %}
+              <p>
+              {{ 'products.product.sold_out' | t }}
+            </p>
+              {% endunless %}
+              
+              
+              <div class="col-6 offset-3">
+                {% include 'article-social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              </div>
+              
+            </div>
+
+          <div class="card-footer bg-warning">
+            {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+            <input type="hidden" id="Quantity" name="quantity" value="1">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <div class="row align-items-center">
+              <div class="col-6 text-center">
+                <h5 class='mb-0 font-weight-bold' data-product-price>{{ product.price | money }}</h5>
+              </div>
+              <div class="col-6">
+                <button class='btn btn-primary btn-block' type="submit" name="add" data-submit-button
+                  {% unless product.available %}disabled="disabled" {% endunless %}>
+                  <span data-submit-button-text>
+                    {% if product.available %}
+                    {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+              </div>
+            </div>
+            {% endform %}
+
+          </div>
+
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+
+
+
   {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
+  {% include 'pagination' %}
   {% endif %}
-{% endpaginate %}
+  {% endpaginate %}
+
+
+</div>

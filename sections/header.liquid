@@ -19,21 +19,25 @@ Theme Store optional settings
   <header role="banner" class="jumbotron jumbotron-fluid w-100 mb-3 p-0">
     
     {% if template.name == 'article' %}
-    {% assign image_size = article.image.width | append:'x' %}
-      <img class='article_jumbotron_image' src="{{ article.image | img_url: image_size }}" alt="{{ articla.title }}">
+    {% assign art_img_size = article.image.width | append:'x' %}
+      <img class='jumbotron_image' src="{{ article.image | img_url: art_img_size }}" alt="">
+    {% endif %}
+
+    {% if template.name != 'article' %}
+      <img class='jumbotron_image' src="{{ 'header.jpg' | asset_img_url: 'large' }}" alt="{{ articla.title }}">
     {% endif %}
 
     <div class="jumbotron_container container-fluid px-0">
-
+    
     {%- comment -%} logo {%- endcomment -%}
     {% if template.name != 'article' %}
-    <div class="h1 jumbotron-logo">
+    <div class="jumbotron-logo">
       <a href="/" class="logo">
-        {% include 'icon-just3logo' %}
+        {% include 'icon-J3G-logo' %}
       </a>
     </div>
     {% endif %}
-
+    
     {%- comment -%} if we are on an article show article title instead of logo {%- endcomment -%}
     {% if template.name == 'article' %}
         <h1 class='article_header_title text-center d-none d-md-block'>{{ article.title }}</h1>
@@ -115,45 +119,6 @@ Theme Store optional settings
 
 </section>
 
-{% if template.name != 'article' %}
-  {% if section.setings.header_image != 'blank' %}
-    {% assign image_size = section.settings.header_image.width | append:'x' %}
-    <style>
-      .jumbotron {
-        background: url({{ section.settings.header_image | img_url: image_size }}) no-repeat center center;
-        background-size: 100% auto;
-      }
-      </style>
-  {% else %}
-    <style>
-      .jumbotron {
-        background: teal;
-      }
-    </style>
-  {% endif %}
-{% endif %}
-
-
-{% if template.name == 'article' %}
-  {% if article.image %}
-  {% assign image_size = article.image.width | append:'x' %}
-    <style>
-      .jumbotron{
-        position:relative;
-      }
-    .article_jumbotron_image{
-      width:100%;
-      height:auto;
-    }
-    .jumbotron_container{
-      position:absolute;
-      top:40%;
-      left:0;
-      z-index: 500;
-    }
-    </style>
-  {% endif %}
-{% endif %}
 
 
 

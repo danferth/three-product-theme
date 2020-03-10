@@ -1,10 +1,22 @@
+.jumbotron{
+    position:relative;
+  }
+.jumbotron_image{
+  width:100%;
+  height:auto;
+}
+.jumbotron_container{
+  position:absolute;
+  top:10%;
+  left:0;
+  z-index: 500;
+}
 .jumbotron-logo{
-    padding:.5rem 0 0 .5rem;
+    padding:0 0 0 1rem;
     svg{
-        width:75%;
+        width:20%;
         height:auto;
-        .st0{fill:rgb(241, 226, 16);}
-	    .st1{fill:rgb(255, 255, 255);}
+        fill: rgba(white, .4);
     }
 }
 .jumbotron-cart-link{
