@@ -49,19 +49,22 @@
 {%- endcomment -%}
 
 
-<div class="col-12">
-    <h3 class="text-center">{{ article.title }}</h3>
+<div class="col-12 order-lg-1">
+    <h3 class="text-center text-lg-left">{{ article.title }}</h3>
     {% include 'article-author-date' %}
   </div>
   
-<div class="col-6 offset-3">
-  {% include 'article-social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
-</div>
-<div class="col-12">
+  {% if settings.social_sharing_blog %}
+    <div class="col-6 offset-3 offset-lg-1 order-lg-4 mt-2 mb-lg-5">
+      {% include 'article-social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+    </div>
+  {% endif %}
+
+<div class="col-8 order-lg-2">
   <hr>
 </div>
 
-  <div class="col-12 mb-3">
+  <div class="col-12 col-lg-8 order-lg-3 mb-5 mb-lg-2">
     {{ article.content }}
   </div>
 
@@ -79,11 +82,7 @@
 {%- endcomment -%}
 
 
-  {% if settings.social_sharing_blog %}
-  <div class="col-12">
-    {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
-  </div>
-  {% endif %}
+
 
 
 

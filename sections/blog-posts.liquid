@@ -26,10 +26,10 @@
     to appear in a list structure, allowing for easier understanding and navigation of list items.
   {%- endcomment -%}
 
-  <ul class="blog-post">
+  <ul class="blog-post row d-flex">
     {% for article in blog.articles limit: section.settings.post_limit %}
-      <li class="blog-post__item article_wrap card mb-3">
-        
+      <li class="blog-post__item article_wrap col-12 col-md-6 col-lg-4 mb-3">
+        <div class='card'>
         <a href="{{ article.url }}">
             {% if article.image %}
               <img class='card-img-top' src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
@@ -58,9 +58,13 @@
               {{ article.content | strip_html | truncate: 150 }}
             {% endif %}
       </div>
-
+      
+      
       {% include 'article-keep-reading' %}
+      
     </div>
+      
+  </div>
     </li>
     {% endfor %}
   </ul>

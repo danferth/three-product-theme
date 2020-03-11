@@ -1,8 +1,9 @@
 
 <footer class='container-md'>
-  <div class="row justify-content-center pt-2 border-top">
-  {%- comment -%}social links{%- endcomment -%}
-  <div class="col-10 my-3">
+  <div class="row justify-content-center align-items-center pt-2 border-top">
+  
+    {%- comment -%}social links{%- endcomment -%}
+  <div class="col-10 col-lg-4 my-3">
   <div class="row justify-content-around">
     {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
     {% for social in social_accounts %}
@@ -21,7 +22,7 @@
   </div>
 </div>
 
-  {%- comment -%}payment icons{%- endcomment -%}
+  {%- comment -%}payment icons
   {% if section.settings.show_payment_icons %}
     <div class="col-12 my-3">
       {% unless shop.enabled_payment_types == empty %}
@@ -36,7 +37,10 @@
       {% endunless %}
     </div>
     {% endif %}
-    <div class="col-12 text-center my-2">
+    {%- endcomment -%}
+
+    {%- comment -%} cart buton {%- endcomment -%}
+    <div class="col-12 col-lg-4 col-lg-4 text-center my-2">
       <a href="/cart" class='btn btn-sm btn-outline-dark rounded-pill footer_cart_link'>
         {% include 'icon-cart' %}
             {{ 'layout.cart.title' | t }}
@@ -45,7 +49,7 @@
     </div>
 
   {%- comment -%}footer menu links{%- endcomment -%}
-  <div class="col-12 my-2">
+  <div class="col-12 col-lg-4 my-2">
     <div class="row justify-content-center">
     {%- assign footer_linklist = section.settings.footer_linklist -%}
     {% if linklists[footer_linklist].links.size > 0 %}

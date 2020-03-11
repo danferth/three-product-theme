@@ -9,10 +9,11 @@
   {% endif %}
 {%- endcomment -%}
 
+<div class="row">
 
-
-  <h1 class="text-center">{{ blog_title }}</h1>
-
+  <div class="col-12">
+    <h1 class="text-center">{{ blog_title }}</h1>
+  </div>
 
   {%- comment -%} for use of tags
   {% if blog.all_tags.size > 0 %}
@@ -40,19 +41,21 @@
 
   {% for article in blog.articles %}
 
-
+<div class="col-12 col-md-6 col-lg-12 col-xl-6">
 <div class="card mb-3">
-  
+    <div class="row no-gutters">
+      <div class="blog_article_img_wrap col-12 col-lg-4">
   {% if article.image %}
       <a href="{{ article.url }}">
-        <img class='card-img-top' src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}}">
+        <img class='card-img blog_article_img' src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}}">
       </a>
   {% endif %}
+</div>
 
-
+<div class="col-12 col-lg-8">
   <div class="card-body">
 
-      <h3 class="card-title text-center">
+      <h3 class="card-title text-center text-lg-left">
         <a href="{{ article.url }}">{{ article.title }}</a>
       </h3>
   
@@ -101,14 +104,16 @@
 
 
       {% include 'article-keep-reading' %}
-
-
+    
+    
+    </div>
+</div>
   </div>
   </div>
-
+</div>
   {% endfor %}
 
-
+</div>
 
   {% if paginate.pages > 1 %}
     {% include 'pagination' %}
