@@ -69,10 +69,10 @@
 
     <div class="card-text mb-3">
       {% if article.excerpt.size > 0 %}
-        {{ article.excerpt }}
+        {{ article.excerpt | | truncate: 100, '...' }}
       {% else %}
         <p>
-          {{ article.content | strip_html | truncatewords: 100 }}
+          {{ article.content | strip_html | truncatewords: 100, '...' }}
         </p>
       {% endif %}
     </div>

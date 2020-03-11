@@ -29,7 +29,7 @@
   <ul class="blog-post row d-flex">
     {% for article in blog.articles limit: section.settings.post_limit %}
       <li class="blog-post__item article_wrap col-12 col-md-6 col-lg-4 mb-3">
-        <div class='card'>
+        <div class='card h-100'>
         <a href="{{ article.url }}">
             {% if article.image %}
               <img class='card-img-top' src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
@@ -53,9 +53,9 @@
 
       <div class="article_excerpt text-center mb-3">
         {% if article.excerpt.size > 0 %}
-              {{ article.excerpt | truncate: 150 }}
+              {{ article.excerpt | truncate: 100, '...' }}
             {% else %}
-              {{ article.content | strip_html | truncate: 150 }}
+              {{ article.content | strip_html | truncate: 100, '...' }}
             {% endif %}
       </div>
       
