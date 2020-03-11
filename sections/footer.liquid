@@ -36,6 +36,13 @@
       {% endunless %}
     </div>
     {% endif %}
+    <div class="col-12 text-center my-2">
+      <a href="/cart" class='btn btn-sm btn-outline-dark rounded-pill footer_cart_link'>
+        {% include 'icon-cart' %}
+            {{ 'layout.cart.title' | t }}
+            ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
+          </a>
+    </div>
 
   {%- comment -%}footer menu links{%- endcomment -%}
   <div class="col-12 my-2">
@@ -50,7 +57,6 @@
     {% endif %}
   </div>
 </div>
-
 
 
   <div class='col-12 text-center p-2'>
