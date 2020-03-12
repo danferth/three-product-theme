@@ -20,6 +20,15 @@
         fill: rgba(white, .4);
     }
 }
+.article-logo{
+    svg{
+        width:10%;
+        height:auto;
+        fill: rgba(white, .95);
+        background:rgba(black, .75);
+        padding:.5rem;
+    }
+}
 .jumbotron-cart-link{
     font-size:.75rem;
     margin-left:1rem;

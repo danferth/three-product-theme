@@ -13,4 +13,7 @@
 //shopify sections need a bit of separation
 .shopify-section{
     margin-bottom:1.5rem;
+    &:last-of-type{
+        margin-bottom:0;
+    }
 }

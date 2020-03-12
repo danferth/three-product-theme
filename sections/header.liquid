@@ -17,87 +17,54 @@ Theme Store optional settings
 
   {%- comment -%} header start {%- endcomment -%}
   <header role="banner" class="jumbotron jumbotron-fluid w-100 mb-3 p-0">
-    
+
     {% if template.name == 'article' %}
     {% assign art_img_size = article.image.width | append:'x' %}
-      <img class='jumbotron_image' src="{{ article.image | img_url: art_img_size }}" alt="">
+    <img class='jumbotron_image' src="{{ article.image | img_url: art_img_size }}" alt="">
     {% endif %}
 
     {% if template.name != 'article' %}
-      <img class='jumbotron_image' src="{{ 'header.jpg' | asset_img_url: '1944x1080' }}" alt="{{ articla.title }}">
+    <img class='jumbotron_image' src="{{ 'header.jpg' | asset_img_url: '1944x1080' }}" alt="{{ articla.title }}">
     {% endif %}
 
     <div class="jumbotron_container container-fluid px-0 d-flex flex-column justify-content-around">
-    
-    {%- comment -%} logo {%- endcomment -%}
-    {% if template.name != 'article' %}
-    <div class="jumbotron-logo">
-      <a href="/" class="logo">
-        {% include 'icon-J3G-logo' %}
-      </a>
-    </div>
-    {% endif %}
-    
-    {%- comment -%} if we are on an article show article title instead of logo {%- endcomment -%}
-    {% if template.name == 'article' %}
-        <h1 class='article_header_title text-center d-none d-md-block'>{{ article.title }}</h1>
-        {% endif %}
-        
-        {%- comment -%} cart {%- endcomment -%}
-        {% if template.name != 'article' %}
-          <a href="/cart" class='btn btn-sm btn-light rounded-pill jumbotron-cart-link align-self-start'>
-            {% include 'icon-cart' %}
-            {{ 'layout.cart.title' | t }}
-            ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-          </a>
-        {% endif %}
-        
+
+      {%- comment -%} logo {%- endcomment -%}
+      {% if template.name != 'article' %}
+      <div class="jumbotron-logo">
+        <a href="/" class="logo">
+          {% include 'icon-J3G-logo' %}
+        </a>
       </div>
-  </header>
-
-
-
-
-
-
-  {%- comment -%}navigation{%- endcomment -%}
-  <nav role="navigation" class='mb-3'>
-    <div class="col-12">
-    <ul class='nav justify-content-center'>
-      {% for link in linklists[section.settings.menu].links %}
-      {% if link.links != blank %}
-      <li class='nav-item'>
-        <a class='nav-link' href="{{ link.url }}">
-          {{ link.title }}
-          {% include 'icon-arrow-down' %}
-        </a>
-        <ul>
-          {% for childlink in link.links %}
-          <li>
-            <a href="{{ childlink.url }}">
-              {{ childlink.title }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </li>
-      {% else %}
-      <li class='nav-item'>
-        <a class='nav-link' href="{{ link.url }}">
-          {{ link.title }}
-        </a>
-      </li>
       {% endif %}
-      {% endfor %}
-    </ul>
-  </div>
-  </nav>
+
+      {%- comment -%} if we are on an article show article title instead of logo {%- endcomment -%}
+      {% if template.name == 'article' %}
+      <div class="article-logo text-center d-none d-md-block">
+        <a href="/" class="logo">
+          {% include 'icon-J3G-logo' %}
+        </a>
+        <h1 class='article_header_title mt-4'>{{ article.title }}</h1>
+      </div>
+      {% endif %}
+
+      {%- comment -%} cart {%- endcomment -%}
+      {% if template.name != 'article' %}
+      <a href="/cart" class='btn btn-sm btn-light rounded-pill jumbotron-cart-link align-self-start'>
+        {% include 'icon-cart' %}
+        {{ 'layout.cart.title' | t }}
+        ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
+      </a>
+      {% endif %}
+
+    </div>
+  </header>
 
   {%- comment -%} anouncement bar {%- endcomment -%}
   {%- if section.settings.announcement_bar_enabled -%}
   {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
   <div class="container-md">
-  <div class="row">
+    <div class="row">
       <div class='col-12 alert alert-warning alert-dismissable fade show rounded-0 mb-3'>
         {%- if section.settings.announcement_bar_link != blank -%}
         <a href="{{ section.settings.announcement_bar_link }}">
@@ -111,9 +78,47 @@ Theme Store optional settings
         </button>
       </div>
     </div>
-  </div>  
+  </div>
   {%- endif -%}
   {%- endif -%}
+
+
+
+
+  {%- comment -%}navigation{%- endcomment -%}
+  <nav role="navigation" class='mb-3'>
+    <div class="col-12">
+      <ul class='nav justify-content-center'>
+        {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+        <li class='nav-item'>
+          <a class='nav-link' href="{{ link.url }}">
+            {{ link.title }}
+            {% include 'icon-arrow-down' %}
+          </a>
+          <ul>
+            {% for childlink in link.links %}
+            <li>
+              <a href="{{ childlink.url }}">
+                {{ childlink.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+        <li class='nav-item'>
+          <a class='nav-link' href="{{ link.url }}">
+            {{ link.title }}
+          </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+
 
 
 </section>

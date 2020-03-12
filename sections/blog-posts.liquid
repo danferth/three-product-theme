@@ -26,7 +26,7 @@
     to appear in a list structure, allowing for easier understanding and navigation of list items.
   {%- endcomment -%}
 
-  <ul class="blog-post row d-flex">
+  <ul class="blog-post row d-flex justify-content-center">
     {% for article in blog.articles limit: section.settings.post_limit %}
       <li class="blog-post__item article_wrap col-12 col-md-6 col-lg-4 mb-3">
         <div class='card h-100'>
