@@ -1,13 +1,7 @@
 {% paginate blog.articles by 5 %}
 
-  {%- assign blog_title = blog.title -%}
+{%- assign blog_title = blog.title -%}
 
-
-  {%- comment -%} we are not using tags for text so ...
-  {% if current_tags %}
-    {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
-  {% endif %}
-{%- endcomment -%}
 
 <div class="row">
 
@@ -15,108 +9,60 @@
     <h1 class="text-center">{{ blog_title }}</h1>
   </div>
 
-  {%- comment -%} for use of tags
-  {% if blog.all_tags.size > 0 %}
-    <h2>{{ 'blogs.general.categories' | t }}</h2>
-
-    <ul>
-      {% for tag in blog.all_tags %}
-
-        {% if current_tags contains tag %}
-          <li>{{ tag }}</li>
-        {% else %}
-          <li>{{ tag | link_to_tag: tag }}</li>
-        {% endif %}
-
-      {% endfor %}
-    </ul>
-  {% endif %}
-{%- endcomment -%}
-
-  {% comment %}
-
-  Article Previews
-  ====================
-  {% endcomment %}
-
   {% for article in blog.articles %}
 
-<div class="col-12 col-md-6 col-lg-12 col-xl-6">
-<div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="blog_article_img_wrap col-12 col-lg-4">
-  {% if article.image %}
-      <a href="{{ article.url }}">
-        <img class='card-img blog_article_img' src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}}">
-      </a>
-  {% endif %}
-</div>
+  <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+    <div class="card h-100">
+      <div class="row no-gutters">
+        <div class="blog_article_img_wrap col-12 col-lg-4">
+          {% if article.image %}
+          <a href="{{ article.url }}">
+            <img class='card-img blog_article_img rounded-0' src="{{ article.image | img_url: 'large' }}"
+              alt="{{ article.title }}}">
+          </a>
+          {% endif %}
+        </div>
 
-<div class="col-12 col-lg-8">
-  <div class="card-body">
+        <div class="col-12 col-lg-8">
+          
+          <div class="card-body">
 
-      <h3 class="card-title text-center text-lg-left">
-        <a href="{{ article.url }}">{{ article.title }}</a>
-      </h3>
-  
+            <h3 class="card-title text-center text-lg-left">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+
+            {% include 'article-author-date' %}
+
+            <hr>
+
+            <div class="card-text mb-3">
+              {% if article.excerpt.size > 0 %}
+              {{ article.excerpt | | truncate: 100, '...' }}
+              {% else %}
+              <p>
+                {{ article.content | strip_html | truncatewords: 100, '...' }}
+              </p>
+              {% endif %}
+            </div>
+
+          </div>
+
+          <div class="card-footer bg-transparent border-0">
+            {% include 'article-keep-reading' %}
+          </div>
 
 
-      {% include 'article-author-date' %}
 
-      <hr>
-
-
-
-    <div class="card-text mb-3">
-      {% if article.excerpt.size > 0 %}
-        {{ article.excerpt | | truncate: 100, '...' }}
-      {% else %}
-        <p>
-          {{ article.content | strip_html | truncatewords: 100, '...' }}
-        </p>
-      {% endif %}
+        </div>
+      </div>
     </div>
-
-    {%- comment -%} we are not using comments or tags
-    {% if blog.comments_enabled? or article.tags.size > 0 %}
-      <ul>
-        {% if blog.comments_enabled? %}
-          <li>
-            <a href="{{ article.url }}#comments">
-              {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
-            </a>
-          </li>
-        {% endif %}
-
-        {% if article.tags.size > 0 %}
-          {% for tag in article.tags %}
-            <li>
-              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-              {% unless forloop.last %}, {% endunless %}
-            </li>
-          {% endfor %}
-        {% endif %}
-      </ul>
-    {% endif %}
-{%- endcomment -%}
-
-
-
-
-      {% include 'article-keep-reading' %}
-    
-    
-    </div>
-</div>
   </div>
-  </div>
-</div>
   {% endfor %}
 
 </div>
 
-  {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
+{% if paginate.pages > 1 %}
+{% include 'pagination' %}
+{% endif %}
 
 {% endpaginate %}
