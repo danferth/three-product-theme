@@ -55,7 +55,7 @@
     {% if linklists[footer_linklist].links.size > 0 %}
     <nav class='nav flex-column'>
         {% for link in linklists[footer_linklist].links %}
-          <a class=' nav-link text-center' href="{{ link.url }}">{{ link.title }}</a>
+          <a class=' nav-link text-center text-lg-left' href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
       </nav>
     {% endif %}

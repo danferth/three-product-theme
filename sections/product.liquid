@@ -39,8 +39,13 @@
       </div>
     </div>
 
+    <div class="col-6 offset-3 my-3 order-lg-5">
+    {% if section.settings.show_share_buttons %}
+      {% include 'article-social-sharing' %}
+      {% endif %}
+    </div>
 
-    <div class="col-12 order-lg-5 product_main_description mt-4 mb-3">
+    <div class="col-12 order-lg-6 product_main_description mt-4 mb-3">
       <div class="row">
         <div class="col-12 product_description" data-description='{{product.id}}'>{{ product.description }}</div>
         <div class="col-12 text-center">
@@ -53,19 +58,11 @@
     </div>
 
 
-
-    <div class="col-12 order-lg-6 mt-5">
-      {% if section.settings.show_share_buttons %}
-      {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-      {% endif %}
-    </div>
-
-
-    <div class="col-12 col-lg-6 order-lg-2 product_main_form mb-5 py-3 bg-warning">
+    <div class="col-12 col-lg-6 order-lg-2 product_main_form my-3 py-3 bg-warning">
       {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
       <input type="hidden" id="Quantity" name="quantity" value="1">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-      <div class="row align-items-center">
+      <div class="row align-items-center h-100">
         <div class="col-6 text-center">
           <h5 class='mb-0 font-weight-bold' data-product-price>{{ current_variant.price | money }}</h5>
         </div>

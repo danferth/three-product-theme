@@ -1,4 +1,20 @@
 
+//shopify sections need a bit of separation
+.shopify-section{
+    margin-bottom:3rem;
+    &:last-of-type{
+        margin-bottom:0;
+    }
+}
+#shopify-section-header{
+    margin-bottom:2rem;
+}
+.section-title{
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+
+
 // Product blocks
 
 // product main
