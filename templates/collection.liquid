@@ -18,8 +18,8 @@
     <div class="row">
 
       {% for product in collection.products %}
-      <div class="col-12 col-lg-4">
-        <div class="card mb-3">
+      <div class="col-12 col-lg-4 mb-lg-5">
+        <div class="card h-100 mb-3">
           {% if product.featured_image != blank %}
           <a href="{{ product.url | within: collection }}">
             <img class='card-img-top' src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
