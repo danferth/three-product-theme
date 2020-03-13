@@ -13,3 +13,23 @@
 .product_main_form form{
     height:100%;
 }
+
+//more buton on product pages
+.product_description{
+    transition: all 350ms;
+}
+.product_description_more{
+    color:$primary;
+    transition:all 350ms;
+    cursor:pointer;
+    i{
+        color:lightgrey;
+        transition:all 350ms;
+    }
+    &:hover{
+        color: lightgrey;
+        i{
+            color:$primary;
+        }
+    }
+}

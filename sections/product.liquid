@@ -17,8 +17,8 @@
     </div>
 
 
-    <div class="col-12 col-md-6 order-lg-3 px-md-0 product_main_featured_img">
-      <img src="{{ product.featured_image | img_url: 'large' }}" alt="">
+    <div class="col-12 col-md-6 order-lg-3 px-md-0">
+      <img class='product_main_featured_img' src="{{ product.featured_image | img_url: '1600x1600' }}" alt="">
     </div>
 
 
@@ -27,11 +27,11 @@
         {% if product.images.size > 1 %}
         {% for image in product.images offset:1 %}
         <div class='col'>
-          <a href="{{ image.src | img_url: 'large' }}" data-thumbnail-id="{{ image.id }}"
-            data-product-single-thumbnail{% if featured_image == image %} aria-current="true" {% endif %}>
-            <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}"
-              alt="{{ image.alt | escape }}">
-          </a>
+          {%comment%}<a href="{{ image.src | img_url: 'large' }}" data-thumbnail-id="{{ image.id }}"
+            data-product-single-thumbnail{% if featured_image == image %} aria-current="true" {% endif %}>{%endcomment%}
+            <img class="product-single__thumbnail-image product_main_sub_img" src="{{ image.src | img_url: '160x160' }}"
+              data-largesrc="{{ image.src | img_url: '1600x1600' }}" alt="{{ image.alt | escape }}">
+          {%comment%}</a>{%endcomment%}
         </div>
         {% endfor %}
         {% endif %}
@@ -50,8 +50,9 @@
         <div class="col-12 product_description" data-description='{{product.id}}'>{{ product.description }}</div>
         <div class="col-12 text-center">
           <hr class='hr-dashed mb-2'>
-          <span class='product_description_more text-muted' data-more='{{ product.id }}'>more
-            <i class="far fa-arrow-alt-circle-down d-block text-primary"></i>
+          <span class='product_description_more' data-more='{{ product.id }}'>
+            <span class='moreLess d-block'>more</span>
+            <i class="far fa-arrow-alt-circle-down d-block"></i>
           </span>
         </div>
       </div>
