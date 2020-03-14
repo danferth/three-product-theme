@@ -1,122 +1,129 @@
 {%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available when you add "Blog posts" section in the Theme Editor.
+This is a required section for the Shopify Theme Store.
+It is available when you add "Blog posts" section in the Theme Editor.
 
-  Theme Store required settings
-  - Heading: title of the blog posts section
-  - Blog (which blog category to show in your store)
+Theme Store required settings
+- Heading: title of the blog posts section
+- Blog (which blog category to show in your store)
 
-  Theme Store optional settings
-  - Number of posts to show
-  - Show author
-  - Show date
+Theme Store optional settings
+- Number of posts to show
+- Show author
+- Show date
 {%- endcomment -%}
 <section>
+  <div class="row">
 
-
-  {% if section.settings.title != blank %}
-    <h2 class="section-title text-center">{{ section.settings.title | escape }}</h2>
-  {% endif %}
-
-  {%- assign blog = blogs[section.settings.blog] -%}
-
-  {%- comment -%}
-    Due to accessibility requirements, the Blog entries list functions
-    as a list of content items. Non-visual users will expect lists of content
-    to appear in a list structure, allowing for easier understanding and navigation of list items.
-  {%- endcomment -%}
-
-  <ul class="blog-post row d-flex justify-content-center">
-    {% for article in blog.articles limit: section.settings.post_limit %}
-      <li class="blog-post__item article_wrap col-12 col-md-6 col-lg-4 mb-3">
-        <div class='card h-100'>
-        <a href="{{ article.url }}">
-            {% if article.image %}
-              <img class='card-img-top' src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
-          {% endif %}
-        </a>
-        <div class="card-body">
-        <h4 class='text-center card-title'>{{ article.title }}</h4>
-        <hr class='article_hr'>
-      
-      {% if section.settings.blog_show_author or section.settings.blog_show_date %}
-      <p class="article_author_date text-muted text-center mb-2">
-        {% if section.settings.blog_show_author %}
-          <i class="fas fa-user-tie mr-1"></i> {{ 'blogs.article.by_author' | t: author: article.author }}
-        {% endif %}
-        {% if section.settings.blog_show_date %}
-          <span class='author_date_separator mx-2'>|</span><i class="far fa-calendar mr-1"></i> {{ article.published_at | date: '%b %Y' }}
-        {% endif %}
-      </p>
+    <div class="col-12">
+      {% if section.settings.title != blank %}
+      <h2 class="section-title text-center">{{ section.settings.title | escape }}</h2>
       {% endif %}
+    </div>
+
+    <div class="col-12">
+      {%- assign blog = blogs[section.settings.blog] -%}
+
+      {%- comment -%}
+      Due to accessibility requirements, the Blog entries list functions
+      as a list of content items. Non-visual users will expect lists of content
+      to appear in a list structure, allowing for easier understanding and navigation of list items.
+      {%- endcomment -%}
+
+      <ul class="blog-post row d-flex justify-content-center">
+        {% for article in blog.articles limit: section.settings.post_limit %}
+        <li class="blog-post__item article_wrap col-12 col-md-6 col-lg-4 mb-3">
+          <div class='card h-100'>
+            <a href="{{ article.url }}">
+              {% if article.image %}
+              <img class='card-img-top' src="{{ article.image.src | img_url: 'large'}}" alt="{{ article.title }}">
+              {% endif %}
+            </a>
+            <div class="card-body">
+              <h4 class='text-center card-title'>{{ article.title }}</h4>
+              <hr class='article_hr'>
+
+              {% if section.settings.blog_show_author or section.settings.blog_show_date %}
+              <p class="article_author_date text-muted text-center mb-2">
+                {% if section.settings.blog_show_author %}
+                <i class="fas fa-user-tie mr-1"></i> {{ 'blogs.article.by_author' | t: author: article.author }}
+                {% endif %}
+                {% if section.settings.blog_show_date %}
+                <span class='author_date_separator mx-2'>|</span><i class="far fa-calendar mr-1"></i>
+                {{ article.published_at | date: '%b %Y' }}
+                {% endif %}
+              </p>
+              {% endif %}
 
 
-      <div class="article_excerpt text-center mb-3">
-        {% if article.excerpt.size > 0 %}
-              {{ article.excerpt | truncate: 100, '...' }}
-            {% else %}
-              {{ article.content | strip_html | truncate: 100, '...' }}
-            {% endif %}
-      </div>
-      
+              <div class="article_excerpt text-center mb-3">
+                {% if article.excerpt.size > 0 %}
+                {{ article.excerpt | truncate: 100, '...' }}
+                {% else %}
+                {{ article.content | strip_html | truncate: 100, '...' }}
+                {% endif %}
+              </div>
+
+            </div>
+
+            <div class="card-footer bg-transparent border-0">
+              {% include 'article-keep-reading' %}
+            </div>
+
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-      
-    <div class="card-footer bg-transparent border-0">
-    {% include 'article-keep-reading' %}
-    </div>
-      
+
   </div>
-    </li>
-    {% endfor %}
-  </ul>
 </section>
 
 {% schema %}
-  {
-    "name": "Blog posts",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Blog posts"
-      },
-      {
-        "id": "blog",
-        "type": "blog",
-        "label": "Blog"
-      },
-      {
-        "type": "range",
-        "id": "post_limit",
-        "label": "Posts",
-        "min": 2,
-        "max": 12,
-        "step": 1,
-        "default": 2
-      },
-      {
-        "type": "checkbox",
-        "id": "blog_show_author",
-        "label": "Show author",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "blog_show_date",
-        "label": "Show date",
-        "default": true
-      }
-    ],
-    "presets": [
-      {
-        "name": "Blog posts",
-        "category": "Blog",
-        "settings": {
-          "blog": "News",
-          "post_limit": 3
-        }
-      }
-    ]
-  }
+{
+"name": "Blog posts",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "Blog posts"
+},
+{
+"id": "blog",
+"type": "blog",
+"label": "Blog"
+},
+{
+"type": "range",
+"id": "post_limit",
+"label": "Posts",
+"min": 2,
+"max": 12,
+"step": 1,
+"default": 2
+},
+{
+"type": "checkbox",
+"id": "blog_show_author",
+"label": "Show author",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "blog_show_date",
+"label": "Show date",
+"default": true
+}
+],
+"presets": [
+{
+"name": "Blog posts",
+"category": "Blog",
+"settings": {
+"blog": "News",
+"post_limit": 3
+}
+}
+]
+}
 {% endschema %}
