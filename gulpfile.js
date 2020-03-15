@@ -67,7 +67,7 @@ function cssTask(){
   //.pipe(replace('"{{', '{{'))
   //.pipe(replace('}}"', '}}'))
   .pipe(gulp.dest(css_dest))
-  .on('end', function(){ beep(3); });
+  .on('end', function(){ beep(1); });
 };
 exports.css = cssTask;
 
@@ -77,7 +77,7 @@ function jsCatTask(){
   return gulp.src([js_src + '/lib/**/*.js', js_src + '/' + js_file + '.js'])
   .pipe(concat(js_file + '.js'))
   .pipe(gulp.dest(js_dest))
-  .on('end', function(){ beep(3); });
+  .on('end', function(){ beep(2); });
 };
 exports.jsCat = jsCatTask;
 

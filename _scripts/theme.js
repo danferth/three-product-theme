@@ -34,19 +34,32 @@ $('.product_description_more').on('click', function(e){
 });
 
 // product page images swap
-var productMainsrc = $('.product_main_featured_img').attr('src');
 
+//grab featured image scr
+var productMainsrc = $('.product_main_featured_img').attr('src');
+//hide spiner loader
+$('.loading-spinner').hide();
+console.log('is spinner showing?');
+//func set festured img scr to sub img src
 var backToMainImg = function(mainSrc){
         $('.product_main_featured_img').attr('src', mainSrc);
 };
 
+//on click featured img reset original src
 $('.product_main_featured_img').on('click', function(){
     backToMainImg(productMainsrc);
 });
 
+
+//on click sub src set featured src
+    //show/hide spinner loader
 $('.product_main_sub_img').on('click', function(e){
     var source = $(this).attr('data-largesrc');
+    $('.loading-spinner').show();
     $('.product_main_featured_img').attr('src', source);
+    $('.product_main_featured_img').on('load', function(){
+        $('.loading-spinner').hide();
+    });
 });
 
 
