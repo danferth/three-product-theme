@@ -19,7 +19,7 @@
     //background: rgba(white, .5);
     i{
         font-size: 3rem;
-        color: rgba($primary, .5);
+        color: rgba(lighten($primary, .5), .5);
     }
 }
 
