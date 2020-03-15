@@ -22,9 +22,14 @@
         color: rgba(lighten($primary, .5), .5);
     }
 }
-
-
-
+.product_main_sub_img_wrap{
+    border:4px solid white;
+    cursor: pointer;
+}
+.product_main_featured_img_wrap{
+    border:4px solid white;
+    cursor: pointer;
+}
 
 .product_main_form form{
     height:100%;

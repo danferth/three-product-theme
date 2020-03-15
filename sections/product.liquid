@@ -17,7 +17,7 @@
     </div>
 
 
-    <div class="col-12 col-md-6 order-lg-3 px-md-0 position-relative">
+    <div class="col-12 col-md-6 order-lg-3 px-md-0 position-relative product_main_featured_img_wrap">
 
       <div class="loading-spinner justify-content-center align-items-center position-absolute">
         <i class="fas fa-record-vinyl animated rubberBand infinite"></i>
@@ -35,7 +35,7 @@
       <div class="row row-cols-3 no-gutters">
         {% if product.images.size > 1 %}
         {% for image in product.images offset:1 %}
-        <div class='col'>
+        <div class='col product_main_sub_img_wrap'>
           {%comment%}<a href="{{ image.src | img_url: 'large' }}" data-thumbnail-id="{{ image.id }}"
             data-product-single-thumbnail{% if featured_image == image %} aria-current="true" {% endif %}>{%endcomment%}
             <img class="product-single__thumbnail-image product_main_sub_img" src="{{ image.src | img_url: '160x160' }}"
