@@ -12,3 +12,84 @@
     background: rgb(233, 6, 195);
 }
 
+//blog posts
+.article_content{
+    p{
+        font-size:.875rem;
+        line-height: 1.5;
+        margin-bottom: 1.3125rem;
+        font-weight: 300;
+        color: $gray-600;
+    }
+    ul li, ol li{
+        color:$gray-600;
+        font-size: .875rem;
+        margin-bottom: .125rem;
+    }
+    ul{
+        li{
+
+        }
+    }
+    a{
+        color: $primary;
+        text-decoration: none;
+        transition: all 250ms;
+        position: relative;
+        z-index: 500;
+        padding: .15rem .25rem .125rem .25rem;
+        &:after{
+            content: "";
+            display:block;
+            position: absolute;
+            bottom: .25rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dashed $gray-600;
+            border-radius: .2rem .2rem 0 0;
+            background: $light;
+            transition: all 250ms;;
+            z-index: -1;
+        }
+        &:hover{
+            color: $primary;
+            text-decoration: none;
+            &:after{
+                height: 100%;
+                border-bottom: 1px solid $primary;
+            }
+        }
+    }
+    blockquote{
+        padding: 1.25rem 5rem;
+        border: 1px dashed darken($secondary, .3);
+        border-left: 0;
+        border-right: 0;
+        margin: 1.75rem 0;
+        font-size: 1.125rem;
+        font-family: $headings-font-family;
+        color: $gray-700;
+        text-align: center;
+        background:$secondary;
+        text-shadow:3px 4px 0 white,
+                    -4px -5px 0 white,
+                    5px -4px 0 white,
+                    8px 7px 1px white,
+                    -3px -8px 1px white,
+                    -5px 3px 2px white;
+    }
+    @include media-breakpoint-down(sm) {
+        blockquote{
+            padding: 1.25rem 2rem;
+            border-color:transparent;
+        }
+    }
+    @include media-breakpoint-down(md) {
+        a{
+            color: $primary;
+        }
+    }
+
+
+}
