@@ -18,7 +18,7 @@
     <div class="row">
 
       {% for product in collection.products %}
-      <div class="col-12 col-md-8 offset-md-2 noffset-lg-0 col-lg-4 mb-3 mb-md-5 mb-lg-5">
+      <div class="col-12 col-md-8 offset-md-2 offset-lg-0 col-lg-4 mb-3 mb-md-5 mb-lg-5">
         <div class="card h-100">
           {% if product.featured_image != blank %}
           <a href="{{ product.url | within: collection }}">
@@ -44,7 +44,7 @@
               
             </div>
 
-          <div class="card-footer bg-warning border-0">
+          <div class="card-footer bg-info border-0">
             {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
             <input type="hidden" id="Quantity" name="quantity" value="1">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}" />

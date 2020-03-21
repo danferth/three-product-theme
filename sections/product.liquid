@@ -68,7 +68,7 @@
     </div>
 
 
-    <div class="col-12 col-lg-6 order-lg-2 product_main_form my-3 py-3 bg-warning">
+    <div class="col-12 col-lg-6 order-lg-2 product_main_form my-3 py-3 bg-info">
       {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
       <input type="hidden" id="Quantity" name="quantity" value="1">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}" />

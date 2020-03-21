@@ -3,5 +3,11 @@
     font-size:.75rem;
     svg{
         margin-right: .25rem;
+        fill:$dark;
+    }
+    &:hover{
+        svg{
+            fill:$light;
+        }
     }
 }
