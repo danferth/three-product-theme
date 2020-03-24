@@ -14,16 +14,12 @@
 
 //blog posts
 .article_content{
-    h1{
-        text-shadow: 7px 11px 0px $gray-100,
-                     8px -9px 0px $gray-200,
-                     0px 9px 0px $gray-100;
-    }
-    h2{
-        text-shadow: 7px 11px 0px $gray-100,
-                     8px -9px 0px $gray-200,
-                     0px 9px 0px $gray-100;
-    }
+    .two-shadows{
+        text-shadow: 0px 0px 0px $white,
+                     0px 0px 0px $gray-200,
+                     0px 0px 0px $gray-200;
+      }
+
     p{
         font-size:.875rem;
         line-height: 1.5;
@@ -87,6 +83,12 @@
                     -11px -7px 0 white,
                     -15px 8px 0 white;
     }
+    .gsap-blockquote{
+        
+    }
+
+
+// breakpoints
     @include media-breakpoint-down(sm) {
         blockquote{
             padding: 1.25rem 2rem;
