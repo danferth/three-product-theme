@@ -105,11 +105,15 @@ added cdn js scripts
 {%- comment -%} jQuery {%- endcomment -%}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+{%- comment -%} gsap.js {%- endcomment -%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" integrity="sha256-6EA3edRalZC0PA7PmE6+Eedf0pgmMNZYOQpgAaZ2h3A=" crossorigin="anonymous"></script>
+
 {%- comment -%} scroll magic {%- endcomment -%}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js" integrity="sha256-2p2tRZlPowp3P/04Pw2rqVCSbhyV/IB7ZEVUglrDS/c=" crossorigin="anonymous"></script>
 
-{%- comment -%} gsap.js {%- endcomment -%}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" integrity="sha256-6EA3edRalZC0PA7PmE6+Eedf0pgmMNZYOQpgAaZ2h3A=" crossorigin="anonymous"></script>
+{%- comment -%} scrollmagic plugin for gsap {%- endcomment -%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js" integrity="sha256-+9YNuItWuR4sbqeaNiJOxG0BvptYz4fbUXbIZoH5Jwo=" crossorigin="anonymous"></script>
+
 
 {%- comment -%} site.js{%- endcomment -%}
 {{ 'theme.js' | asset_url | script_tag }}
