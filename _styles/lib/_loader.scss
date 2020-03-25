@@ -9,10 +9,17 @@
     display:flex;
     align-items: center;
     justify-content:center;
+    transition: all 350ms;;
+}
+.loader-icon{
+    width:6%;
+}
+svg{
+    fill: lightgrey;
+}
+
+@include media-breakpoint-down(md){
     .loader-icon{
-        width:6%;
-    }
-    svg{
-        fill: lightgrey;
+        width: 15%;
     }
 }
