@@ -1,5 +1,6 @@
 .jumbotron{
     position:relative;
+    margin-bottom:0;
   }
 .jumbotron_image{
   width:100%;
@@ -60,19 +61,6 @@
             fill:$dark;
         }
     }
-}
-.nav{
-    padding: .25rem 0;
-}
-.nav-item{
-    border-right:1px solid grey;
-    font-size: .875rem;
-    &:last-child{
-        border-right:none;
-    }
-}
-.nav-link{
-    padding: .25rem 1rem;
 }
 
 

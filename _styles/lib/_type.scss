@@ -25,10 +25,10 @@
         line-height: 1.5;
         margin-bottom: 1.3125rem;
         font-weight: 300;
-        color: $gray-600;
+        color: $dark;
     }
     ul li, ol li{
-        color:$gray-600;
+        color:$gray-700;
         font-size: .875rem;
         margin-bottom: .125rem;
     }
@@ -84,7 +84,9 @@
                     -15px 8px 0 white;
     }
     .gsap-blockquote{
-        
+        height:0;
+        padding: 0 5rem;
+        overflow:hidden;
     }
 
 
