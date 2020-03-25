@@ -75,8 +75,16 @@ var controller = new ScrollMagic.Controller();
 var twoShadows = gsap.timeline();
 twoShadows.from('.two-shadows', { duration: 1, textShadow: "0px 0px 2px #fff, 15px 9px 0px #e9ecef, -15px -9px 0px #e9ecef"});
 
+
+var bqH = $('.gsap-blockquote').height();
+console.log(bqH);
+
 var gsapBlockquote = gsap.timeline()
-.to('.gsap-blockquote', { duration: 1, height: 'auto', padding: '1.25rem 5rem'});
+.from('.gsap-blockquote', { duration: .05, background: 'white' })
+.from('.gsap-blockquote', { duration: .20, borderColor: 'transparent' })
+.from('.gsap-blockquote span', { duration: .05, display: 'none' })
+.from('.gsap-blockquote span', { duration: .25, padding: '0rem 5rem' })
+.from('.gsap-blockquote span', { duration: .25, color: '#F9F8EF' });
 
 //scenes
 var TSscene = new ScrollMagic.Scene({
@@ -88,7 +96,7 @@ var TSscene = new ScrollMagic.Scene({
 
   var GSblock = new ScrollMagic.Scene({
       triggerElement: '.gsap-blockquote',
-      triggerHook: 'onEnter',
+      triggerHook: 'onCenter',
       duration: 200
   }).setTween(gsapBlockquote)
     .addTo(controller);

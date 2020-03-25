@@ -53,7 +53,7 @@
     <div class="row justify-content-center">
     {%- assign footer_linklist = section.settings.footer_linklist -%}
     {% if linklists[footer_linklist].links.size > 0 %}
-    <nav class='nav flex-column'>
+    <nav class='nav footer-nav flex-column'>
         {% for link in linklists[footer_linklist].links %}
           <a class=' nav-link text-center text-lg-left' href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
