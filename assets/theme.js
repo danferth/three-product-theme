@@ -7204,6 +7204,33 @@ $('.product_main_sub_img').on('click', function(e){
 
 //gsap stuff
 
+//blog post animations to blockquote and a heading or two
+var controller = new ScrollMagic.Controller();
+
+//animation for two shadows
+var twoShadows = gsap.timeline();
+twoShadows.from('.two-shadows', { duration: 1, textShadow: "0px 0px 2px #fff, 15px 9px 0px #e9ecef, -15px -9px 0px #e9ecef"});
+
+var gsapBlockquote = gsap.timeline()
+.to('.gsap-blockquote', { duration: 1, height: 'auto', padding: '1.25rem 5rem'});
+
+//scenes
+var TSscene = new ScrollMagic.Scene({
+  triggerElement: '.two-shadows',
+  triggerHook: 'onCenter',
+  duration:150
+}).setTween(twoShadows)
+  .addTo(controller);
+
+  var GSblock = new ScrollMagic.Scene({
+      triggerElement: '.gsap-blockquote',
+      triggerHook: 'onEnter',
+      duration: 200
+  }).setTween(gsapBlockquote)
+    .addTo(controller);
+
+
+
 //product page sub images
 
 
